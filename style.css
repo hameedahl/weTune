@@ -1,0 +1,366 @@
+* {
+        margin: 0;
+        padding: 0;
+}
+
+body {
+        background: #3B3B3B;
+}
+
+/*
+*
+* Main Side Bar (with profile info)
+*
+*/
+.side-bar {
+        background: #1E1E1E;
+        color: white;
+        position: fixed;
+        display: inline-block;
+        padding: 20px 50px 50px 50px;
+        height: 100vh;
+}
+
+.side-bar-content {
+        position: relative;
+}
+
+.side-bar h1 {
+        text-align: center;
+        margin-bottom: 40px;
+        font-size: 40px;
+}
+
+.profile-pic {
+        background: #D9D9D9;
+        width: 20vh;
+        height: 20vh;
+        border-radius: 100%;
+}
+
+.profile {
+        text-align: center;
+}
+
+.profile h2 {
+        margin-top: 10%;
+}
+
+.share-btn {
+        margin: auto;
+        margin-top: 15%;
+        border: 1px solid #fff;
+        text-align: center;
+        width: 50%;
+        padding: 8px;
+        cursor: pointer;
+}
+
+.share-btn a {
+        text-decoration: none;
+        color: #fff;
+}
+
+.share-btn:hover a {
+        color:#D9D9D9;
+}
+
+.profile-menu {
+        margin: auto;
+        margin-top: 20vh;
+        width: 60%;
+}
+
+.profile-menu ul li {
+        list-style: none;
+        font-size: 18px;
+        padding: 2px;
+}
+
+.profile-menu ul li a {
+        text-decoration: none;
+        color: #fff;
+}
+
+.profile-menu ul li a:hover {
+        color:#D9D9D9;
+}
+
+.profile-menu ul li:nth-child(4) {
+        margin-top: 8vh;
+}
+
+/*
+*
+* Main Horizontal Bar
+*
+*/
+
+.horizontal-bar {
+        background: #1E1E1E;
+        width: 100%;
+        height: 4vh;
+        position: fixed;
+        z-index: 6;
+}
+
+/*
+*
+* Feed Page
+*
+*/
+
+.profile img {
+        width: 20vh;
+        height: 20vh;
+        border-radius: 100%;
+}
+
+.feed {
+        position: absolute;
+        top: 10vh;
+        margin-left: 60vh;
+        width: 100vh;
+}
+
+.post-container {
+        position: fixed;
+}
+
+.post-user {
+        position: relative;
+        display: inline-block;
+        text-align: center;
+        width: 15vh;
+        color: #ffff;
+}
+
+.post-date {
+        margin: 5px;
+        font-size: 10px;
+}
+
+.post-user img {
+        width: 10vh;
+        height: 10vh;
+        border-radius: 100%;
+        margin: 2px; 
+        box-shadow: -1px 2px 4px #555454;
+}
+
+.post {
+        display: inline-block;
+        position: relative;
+        color: #000;
+        background:#D9D9D9;
+        width: 75vh;
+        height: 20vh;
+        box-shadow: -4px 2px 4px #555454;
+}
+
+.post img {
+        width: 18vh;
+        height: 18vh;
+        position: absolute;
+        right: 0;
+        margin: 1vh;
+}
+
+.post-song {
+        display: inline-block;
+        position: absolute;
+        left: 0;
+        margin: 10px;
+}
+
+.song-name {
+        font-size: 20px;
+}
+
+.artist-name {
+        font-size: 13px;
+}
+
+.fa-pause {
+        display: none;
+}
+
+.react {
+        text-align: center;
+        display: inline-block;
+        color: #ffff;
+        position: absolute;
+        width: 9vh;
+        top: 20px;
+}
+
+.react p {
+        font-size: 13px;
+}
+
+.react i {
+        text-shadow: -4px 2px 4px #555454;
+}
+
+.fa-pause, .fa-play {
+        font-size: 250%;
+        color: #fff;
+}
+
+.fa-pause:hover, .fa-play:hover, .fa-heart:hover {
+        color: #D9D9D9;
+        cursor: pointer;
+}
+
+.fa-heart {
+        font-size: 200%;
+        margin-top: 10px;
+}
+
+.caption {
+        color: #ffff;
+        margin-left: 15.5vh;
+        margin-bottom: 5vh;
+}
+
+
+/*
+*
+* Share Page
+*
+*/
+
+.share {
+        position: relative;
+        top: 10vh;
+        margin-left: 70vh;
+        width: 75vh;
+        height: 85vh;
+        box-shadow: -4px 2px 4px #555454;
+        background: #D9D9D9;
+}
+
+.title {
+        position: absolute;
+        top: 4vh;
+        margin: auto;
+        width: 100%;
+        text-align: center;
+        display: block;
+}
+
+
+.title h2 {
+        color: #676464;
+        font-size: 50px;
+}
+
+.title p {
+        color: #3B3B3B;
+        font-size: 20px;
+}
+
+.share-form {
+        position: absolute;
+        width: 85%;
+        margin-left: 5vh;
+        top: 25%;
+        font-size: 18px;
+}
+
+.share-form p {
+        margin-bottom: 10px;
+}
+
+.share-song-name, .share-artist, .share-caption  {
+        padding: 15px;
+        border-radius: 10vh;
+        border: none;
+        margin-bottom: 10px;
+        width: 70%;
+}
+
+.share-caption {
+        width: 93%;
+}
+
+.share-caption-content  {
+        margin-top: 5vh;
+}
+
+#search-btn {
+        background: #676464;
+        border: none;
+        color: #fff;
+        padding: 3%;
+        width: 20%;
+        margin-left: 10px;
+        border-radius: 10vh;
+}
+
+#post-btn {
+        background: #676464;
+        border: none;
+        color: #fff;
+        padding: 3%;
+        width: 30%;
+        margin-top: 10%;
+        border-radius: 10vh;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+}
+
+#search-btn:hover, #post-btn:hover {
+        cursor: pointer;
+        background: #3B3B3B;
+}
+
+.error-msg-search, .error-msg-post {
+        margin-left: 10px;
+        color: #a52a2a;
+        font-size: 12px;
+        display: none;
+}
+
+
+/* result audio player */
+.result-player {
+        position: absolute;
+        display: block;
+        top: 20vh;
+        margin-left: 150vh;
+        width: 30vh;
+        height: 27vh;
+}
+
+.result-img {
+        border: 2px solid #3B3B3B;
+        box-shadow: -4px 2px 4px #555454;
+        margin-bottom: 1vh;
+        width: 80%;
+}
+
+.player {
+        text-align: center;
+        margin-top: 2vh;
+}
+
+.result-play-pause-btn {
+        display: block;
+}
+
+.result-play-btn {
+        position: absolute;
+        left: 14vh;
+        top: 12vh;
+}
+
+.results-title {
+        color: #ffff;
+        text-align: center;
+}
+
+.result-artist {
+        margin-top: 1vh;
+}
