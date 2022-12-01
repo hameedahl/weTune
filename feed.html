@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://kit.fontawesome.com/55d0223fcd.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="style.css">
+        <script src="https://code.jquery.com/jquery-3.6.1.js" 
+        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+        crossorigin="anonymous"></script>
+        <title>Feed - weTune</title>
+</head>
+<body>
+        <div class="side-bar">
+                <div class="side-bar-content">
+                <h1>weTune</h1>
+                <div class="profile">
+                        <div class="profile-pic"><img src="" alt=""></div>
+                        <h2 class="name">User</h2>
+                        <p class="user">@user1</p>
+                </div>
+                <div class="share-btn"><a href="">Share Tune</a></div>
+                <div class="profile-menu">
+                        <ul>
+                                <li><a href="">Favorites</a></li>
+                                <li><a href="">Settings</a></li>
+                                <li><a href="">Log Out</a></li>
+                        </ul>
+                </div>
+                </div>
+        </div>
+        <div class="horizontal-bar"></div>
+        <div class="feed">
+                <!-- <?php
+                        /* get data from post */
+                        $songName = $_REQUEST["song"];
+                        $artist = $_REQUEST["artist"];
+                        //$preview = $_REQUEST["preview"];
+                        $caption = $_REQUEST["caption"];
+                        echo($songName);
+                        echo($artist);
+                        echo($caption);
+
+
+                
+                ?>
+                <?php 
+                        /* establish connection with database */
+                        include "database.php";
+                        $sql = "select * from posts";
+                        $result = $conn->query($sql) or die(mysqli_error($conn));
+                        /* display each post from database */
+                        while ($row = $result->fetch_assoc()) {
+                                echo '<div class="post-contianer">
+                                        <div class="post-user">
+                                                <img src="member-8.png">
+                                                <p class="poster-name">@user</p>
+                                                <p class="post-date">' . $row['Date'] . '</p>
+                                        </div>
+                                        <div class="post">
+                                                <div class="post-song">
+                                                        <h4 class="song-name">' . $row['TuneName'] . '</h4>
+                                                        <p class="artist-name">' . $row['TuneArtist'] . '</p>
+                                                </div>
+                                                <img src="' . $row['TuneAlbum'] . '" class="album">
+                                        </div>
+                                        <div class="react">
+                                                <i class="play-pause-btn fa-sharp fa-solid fa-play"></i>
+                                                <i class="play-pause-btn fa-solid fa-pause"></i>
+                                                <audio id="song-audio">
+                                                        <source src="' . $row['TunePreview'] . '" type="audio/mpeg">
+                                                        Your browser does not support the audio element.
+                                                        </source>
+                                                </audio>
+                                                <p>tuneIn</p>
+                                                <i class="fa-solid fa-heart" onclick="like()"></i>
+                                                <p class="likes">' . $row['Likes'] . '</p>
+                                        </div>
+                                        <p class="caption">' . $row['Caption'] . '</p>  
+                                </div>';
+                        }
+                ?> -->
+                <div class="post-contianer">
+                        <div class="post-user">
+                                <p></p>
+                                <img src="" alt="">
+                                <p class="poster-name">@user</p>
+                                <p class="post-date">Today 2:00pm</p>
+                        </div>
+                        <div class="post">
+                                <div class="post-song">
+                                        <h4 class="song-name">Song Name</h4>
+                                        <p class="artist-name">Artist</p>
+                                </div>
+                                <img src="" alt="" class="album" style="border: 1px solid black;">
+                        </div>
+                        <div class="react">
+                                <i class="fa-sharp fa-solid fa-play"></i>
+                                <i class="fa-solid fa-pause"></i>
+                                <p>tuneIn</p>
+                                <i class="fa-solid fa-heart" onclick="like()"></i>
+                                <p class="likes">999 Likes</p>
+                        </div>
+                        <p class="caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor how m</p>  
+                </div>
+        <script>
+                function like() {
+                        likeBtn = document.getElementsByClassName("fa-heart")[0];
+                        likeBtn.style.color === "red" ? likeBtn.style.color = "white" : likeBtn.style.color = "red";
+                        // increase count and change num
+                }
+        </script>
+</body>
+</html>
