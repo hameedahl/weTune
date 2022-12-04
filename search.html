@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://kit.fontawesome.com/55d0223fcd.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="style.css">
+        <!-- <script src="script.js" defer></script> -->
+        <title>NewTune - weTune</title>
+        <style>
+                .share-form {
+                        position: absolute;
+                        width: 85%;
+                        margin-left: 5vh;
+                        top: 15%;
+                        font-size: 18px;
+                }
+        </style>
+</head>
+<body>
+        <div class="horizontal-bar"></div>
+        <div class="share">
+                <div class="share-content">
+                        <div class="title">
+                                <h2>Search</h2>
+                                <p>See What Your Friends Are Listening To!</p>
+                        </div>
+                        <div class="share-form">
+                                <form class="post_form" onsubmit="return isValid" action="http://localhost:8080/search">
+                                        <div class="share-caption-content">
+                                                <p>Username</p>
+                                                <input type="text" name="username" class="share-caption" maxlength="84">
+                                        </div>
+                                        <input id="post-btn" type="submit" value="Search">
+                                </form>
+                        </div>
+                </div>
+        </div>
+</body>
+</html>
