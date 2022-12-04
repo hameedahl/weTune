@@ -8,7 +8,7 @@ http.createServer(async function (req, res) {
     var qobj = url.parse(req.url, true).query;
     var username = qobj.username;  
 
-    const uri = "mongodb+srv://wetune:darkchoco@finalproj.4qieest.mongodb.net/?retryWrites=true&w=majority";
+    const uri = "";
     const client = new MongoClient(uri);
     let results = [];
 
