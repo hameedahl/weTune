@@ -6,14 +6,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://kit.fontawesome.com/55d0223fcd.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="style.css">
+        <script src="https://code.jquery.com/jquery-3.6.1.js" 
+        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+        crossorigin="anonymous"></script>
         <title>NewTune - weTune</title>
 </head>
 <body>
         <div class="side-bar">
                 <div class="side-bar-content">
-                <h1>weTune</h1>
+                <div class="logo"><h1>weTune</h1></div>
                 <div class="profile">
-                        <div class="profile-pic"><img src="" alt=""></div>
+                        <div class="profile-pic"></div>
                         <h2 class="name">User</h2>
                         <p class="user">@user1</p>
                 </div>
@@ -26,7 +29,6 @@
                         </ul>
                 </div>
                 </div>
-                <!-- <input type="file"  accept="image/jpeg, image/png" name="image" id="file"> -->
         </div>
         <div class="horizontal-bar"></div>
         <div class="share">
@@ -36,74 +38,65 @@
                                 <p>What Song Are You Listening To Right Now?</p>
                         </div>
                         <div class="share-form">
-                                <form class="post_form" onsubmit="return validatePost()">
+                                <form class="post_form" id="form" method="get" action="http://localhost:8080/process" onsubmit="validatePost(event)">
                                         <div class="share-song-info">
                                                 <p>Song Name</p>
                                                 <input type="text" name="song" class="share-song-name">
-                                                <div class="loading" style="padding:0;margin:0;top:1vh;display:none;position:relative;left:2vh">
+                                                <div class="loading">
                                                         <img src="loading.gif" alt="" style="width:25px;height:25px;">
                                                 </div>
                                                 <p>Artist</p>
                                                 <input type="text" name="artist" class="share-artist">
                                                 <input id="search-btn" type="button" value="Search">
-                                                <p class="error-msg-search">Test</p>
+                                                <input type="hidden" name="trackId" value="0" id="share-trackId">
+                                                <p class="error-msg-search"></p>
                                         </div>
                                         <div class="share-caption-content">
                                                 <p>Caption</p>
                                                 <input type="text" name="caption" class="share-caption" maxlength="84">
                                         </div>
                                         <input id="post-btn" type="submit" value="Post">
-                                        <p class="error-msg-post"></p>
                                 </form>
                         </div>
                 </div>
         </div>
-        <div class="result-player">
-                <div class="player">
-                        <img class="result-img" src="" alt="">
-                        <i class="result-play-btn fa-sharp fa-solid fa-play"></i>
-                        <i class="result-play-btn fa-solid fa-pause"></i>
-                        <audio id="song-audio">
-                                <source src="" type="audio/mpeg">
-                                Your browser does not support the audio element.
-                                <o/source>
-                        </audio>
-                </div>
-                <div class="results-title">
-                        <p class="result-song"></p>
-                </div>
+        <div class="song-player">
+                <img class="album-img" src="" alt="">
+                <i class="album-play-btn fa-sharp fa-solid fa-play"></i>
+                <i class="album-play-btn fa-solid fa-pause"></i>
+                <p class="album-title"></p>
+                <audio id="song-audio" loop>
+                        <source src="" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                        <o/source>
+                </audio>
         </div>
 
-
-<!-- Java Script -->
-<script src="https://code.jquery.com/jquery-3.6.1.js" 
-integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
-crossorigin="anonymous"></script>
+<!-- JAVASCRIPT -->
 <script>
         song = document.getElementById("song-audio");
-        song.loop = true;
-        showAlbum = true;
+        submitting = false;
         searchFound = false;
-        $(".result-player").css("display", "none");
+
+        $(".song-player").css("display", "none");
 
         /* query search */
-        $("#search-btn").click(function () {
+        $("#search-btn").click(async function () {
                 song.pause();
                 $(".error-msg-search").css("display", "none");
-                artist = $(".share-artist").val();
+                artist = $(".share-artist").val();  
                 songName = $(".share-song-name").val();
                 if (validateQuery(songName, artist)) {
-                        search(songName, artist);
+                        await search(songName, artist);
                 }
         });
 
-        /* play and pause for player */
+        /* play and pause for audio player */
         $(".fa-play").click(function () {
                 $(".fa-pause").css("display", "inline-block");
                 $(".fa-play").css("display", "none");
                 song.play();
         });
-
         $(".fa-pause").click(function () {
                 $(".fa-play").css("display", "inline-block");
                 $(".fa-pause").css("display", "none");
@@ -119,46 +112,34 @@ crossorigin="anonymous"></script>
                         return false;
                 }
 
-                $(".loading").css("display", "inline-block");
                 return true;
         }
 
-        /* validate song and artist when posting, display error msg if needed */
-        function validatePost() {
+        /* validate form, display error msg if needed */
+        async function validatePost(event) {
+                event.preventDefault();
                 $(".error-msg-search").css("display", "none");
-                $(".error-msg-post").css("display", "none");
                 artist = $(".share-artist").val();
                 songName = $(".share-song-name").val();
-                showAlbum = false; 
-                error_search = document.getElementsByClassName("error-msg-search")[0];
-                error_post = document.getElementsByClassName("error-msg-post")[0];
-                /* validate query */
+                submitting = true; 
+                /* validate search */
                 if (validateQuery(songName, artist)) {
-                        $(".loading").css("display", "inline");
-                        search(songName, artist);
+                       await search(songName, artist);                      
                 }
-                /* wait for search() to finish then validate */
-                setTimeout(() => {
-                        if ((error_search.style.display === "none") && error_post.style.display === "none") {
-                                location.replace("newPost.html");
-                        }
-
-                }, 1000); 
-
-                return false;
         }
-
 
         async function search(songName, artist) {
                 /* get request to JSON file from iTunes */
                 /* returns all songs by 'artist' */
+                $(".loading").css("display", "inline-block");
                 url = "https://itunes.apple.com/search?&media=music&limit=200&term=" + artist + "&attribute=artistTerm";
                 artist = artist.replaceAll(' ', '+');
                 try {
                         const res = await fetch(url);
                         const data = await res.json();
-                        await resultsFound(data, false);
-                        await songFound(data, songName);
+                        if (resultsFound(data, false)) {
+                                await songFound(data, songName, artist);
+                        }
                 } catch (error) {
                         console.log(error)
                 }          
@@ -170,32 +151,33 @@ crossorigin="anonymous"></script>
                         $(".loading").css("display", "none");
                         $(".error-msg-search").html("No results found. Please check your spelling and try again.");
                         $(".error-msg-search").css("display", "inline");
-                        errorFound = true;
                         return false;
                 }
-
                 return true;
         }
 
-        function songFound(songs, songName) {
-                /* look through all songs of artist and find 'songName' */
+        async function songFound(songs, songName, artist) {
+                /* look through all songs of 'artist' and find 'songName' */
                 for (index = 0; index < songs.resultCount; index++) {
                         result = songs.results[index];
                         /* displays the first result it finds */
                         if ((result.trackName.toUpperCase()).includes(songName.toUpperCase())) {
+                                $(".song-player").css("display", "inline");
                                 $(".loading").css("display", "none");
-                                if (showAlbum) {
-                                        $(".result-player").css("display", "inline");
-                                        /* resize image first */
-                                        $(".result-img").attr("src", result.artworkUrl100.replaceAll('100x100bb.jpg', '300x300bb.jpg'));
+                                $("#share-trackId").attr("value", result.trackId); /* adding match to url to add to db */
+                                if (!submitting) {
+                                        /* displaying results */
+                                        $(".album-img").attr("src", result.artworkUrl100.replaceAll('100x100bb.jpg', '300x300bb.jpg')); /* resize image */
                                         $("#song-audio").attr("src", result.previewUrl);
-                                        $(".result-song").html(result.trackName + " - <em>" + result.artistName + "</em>");
+                                        $(".album-title").html("<em>" + result.trackName + "</em> -" + result.artistName);
+                                } else {
+                                        document.getElementById("form").submit();
+                                        document.getElementById("form").reset();
                                 }
                                 searchFound = true;
                                 return true;
                         }
                 }
-
                 /* 'songName' not found for this artist */
                 if (!searchFound) { resultsFound(songs, true); };
                 return false;
