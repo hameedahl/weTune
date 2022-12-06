@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Register - weTune</title>
+</head>
+<body>
+    <div class="reg">
+        <div class="reg-content">
+                <div class="title">
+                        <h2>sign up for weTune.</h2>
+                </div>
+                <div class="signup-form">
+                        <form class="register_form" id="form" method="get" action="http://localhost:8080/process" onsubmit="validatePost(event)">
+                                <div class="form-item">
+                                        <input type="text" name="fname" id="info-fname" placeholder="First Name">
+                                </div>
+                                <div class="form-item">
+                                        <input type="text" name="lname" id="info-lname" placeholder="Last Name">
+                                </div>
+                                <div class="form-item">
+                                        <input type="text" name="uname" id="info-uname" placeholder="Username">
+                                </div>
+                                <div class="form-item">
+                                        <input type="text" name="email" id="info-email" placeholder="Email">
+                                </div>
+                                <div class="form-item">
+                                        <input type="text" name="pword" id="info-pword" placeholder="Password">
+                                </div>
+                                <div class="terms">
+                                        <input type="checkbox" id="termsConditions" value="Term">
+                                        <label for="terms"> I Accept the Terms of Use & Privacy Policy</label><br>
+                                </div>
+                                        <button id="signup-btn" onClick="">Sign Up</button>
+                        </form>
+                </div>
+        </div>
+    </div>
+</body>
+<script>
+
+        function formSubmit(){
+                alert("Thank you! You will receive a response in 1-2 business days.");
+
+                submit.onclick = function validateForm() {
+                        if (info-fname.value == "") {
+                        alert("First name must be filled out");
+                        return false;
+                        }
+                        if (info-lname.value == "") {
+                        alert("Last name must be filled out");
+                        return false;
+                        }
+                        if (info-uname.value == "") {
+                        alert("Last name must be filled out");
+                        return false;
+                        }
+                        if (info-email.value == "") {
+                        alert("Email must be filled out");
+                        return false;
+                        }
+                        if (info-pword.value == "") {
+                        alert("Last name must be filled out");
+                        return false;
+                        }
+                        if (!checkbox.checked){
+                        alert("Please check the terms of use & private policy.");
+                        return false;
+                        }
+
+                        checkUsername();
+                        checkPassword();
+                        formSubmit();
+                }
+        }
+
+        function checkUsername(){
+                console.log("this function will check if the username exists in the database");
+        }
+
+        function checkPassword(){
+                console.log("checks if valid password pass");
+        }
+
+</script>
+</html>
